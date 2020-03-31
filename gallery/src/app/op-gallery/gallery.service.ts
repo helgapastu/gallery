@@ -36,8 +36,8 @@ export class GalleryService {
       httpParams
     ).pipe(map(response => {
       this.cachedResults = [];
-      console.log(response)
       let jsonRes = response.photos.photo;
+
       for (let i = 0; i < jsonRes.length; i++) {
         let farm = jsonRes[i].farm;
         let id = jsonRes[i].id;
@@ -64,10 +64,12 @@ export class GalleryService {
 
   goToNextPhoto(id: string) {
     const index = this.cachedResults.findIndex(photo => photo.id === id);
+
     if (index < this.cachedResults.length - 1) {
       return this.cachedResults[index + 1]
+    } else {
+      return this.cachedResults[index]
     }
-    return this.cachedResults[index]
   }
 
   goToPreviousPhoto(id: string) {
@@ -75,8 +77,9 @@ export class GalleryService {
 
     if (index !== 0) {
       return this.cachedResults[index - 1]
+    } else {
+      return this.cachedResults[index]
     }
-    return this.cachedResults[index]
   }
 
 }
