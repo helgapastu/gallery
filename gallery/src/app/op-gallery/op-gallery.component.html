@@ -1,1 +1,21 @@
-<p>op-gallery works!</p>
+<ng-container *ngIf="photos.length > 0; else searchTemplate">
+    <div>
+        <button (click)="photos.length = 0">Назад</button>
+
+        <input type="text" id="search" [(ngModel)]="inputTitle" placeholder="Знайти фото...">
+
+        <select (change)="selectOption($event.target.value)" [(ngModel)]="selectedOption">
+            <option *ngFor="let option of options" [value]="option.value">{{option.name}}</option>
+        </select>
+    </div>
+
+    <app-op-photo *ngFor="let photoObj of photos | photoSearch:inputTitle | photoSort:selectedOption"
+        [photoObj]="photoObj">
+    </app-op-photo>
+</ng-container>
+
+
+<ng-template #searchTemplate>
+    <input type="text" [(ngModel)]="searchText">
+    <button (click)="search(searchText)">Пошук</button>
+</ng-template>
