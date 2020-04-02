@@ -12,6 +12,8 @@ export class GalleryService {
 
   private cachedResults: any[] = [];
 
+  sortType: string = 'default';
+
   getPhotos(searchText: string): Observable<any> {
     console.log(searchText);
 
@@ -81,5 +83,4 @@ export class GalleryService {
       return this.cachedResults[index]
     }
   }
-
 }

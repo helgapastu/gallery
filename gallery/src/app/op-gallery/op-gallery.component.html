@@ -1,12 +1,10 @@
 <ng-container *ngIf="photos.length > 0; else searchTemplate">
     <div>
-        <button (click)="photos.length = 0">Назад</button>
+        <button (click)="goBack()">Назад</button>
 
         <input type="text" id="search" [(ngModel)]="inputTitle" placeholder="Знайти фото...">
 
-        <select (change)="selectOption($event.target.value)" [(ngModel)]="selectedOption">
-            <option *ngFor="let option of options" [value]="option.value">{{option.name}}</option>
-        </select>
+        <app-photo-sort (changedOption)="displayChange($event)"></app-photo-sort>
     </div>
 
     <app-op-photo *ngFor="let photoObj of photos | photoSearch:inputTitle | photoSort:selectedOption"
