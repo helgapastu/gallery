@@ -14,18 +14,17 @@ export class GalleryService {
 
   currentVisiblePhotos = [];
 
-  DEFAULT_SEARCHING_VALUE = '';
   DEFAULT_SORTING_STATE = 'default';
 
-  private searchingValue: string = this.DEFAULT_SEARCHING_VALUE;
+  private filteringValue: string = '';
   private sortingType: string = this.DEFAULT_SORTING_STATE;
 
-  setSearchingValue(searchingValue) {
-    this.searchingValue = searchingValue;
+  setFilteringValue(filteringValue) {
+    this.filteringValue = filteringValue;
   }
 
-  getSearchingValue() {
-    return this.searchingValue;
+  getFilteringValue() {
+    return this.filteringValue;
   }
 
   setSortingType(sortingType) {

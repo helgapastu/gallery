@@ -11,16 +11,16 @@ import { Router } from '@angular/router';
 export class OpGalleryComponent implements OnInit {
   photos: any[] = [];
   selectedOption: string;
-  inputTitle: string;
+  filterTitle: string;
 
   constructor(private galleryService: GalleryService, private router: Router) { }
 
   ngOnInit() {
-    this.inputTitle = this.galleryService.getSearchingValue();
+    this.filterTitle = this.galleryService.getFilteringValue();
     this.photos = this.galleryService.getCachedResults();
   }
 
-  searchInNgTemplate(searchText) {
+  searchInStartPage(searchText) {
     if (searchText.trim()) {
       this.galleryService.getPhotos(searchText).subscribe(response => {
         this.photos = response;
@@ -28,9 +28,9 @@ export class OpGalleryComponent implements OnInit {
     }
   }
 
-  setInputTitle(value) {
-    this.inputTitle = value;
-    this.galleryService.setSearchingValue(value);
+  setFilterTitle(value) {
+    this.filterTitle = value;
+    this.galleryService.setFilteringValue(value);
   }
 
   setSelectedOption(option) {
@@ -38,9 +38,9 @@ export class OpGalleryComponent implements OnInit {
     this.galleryService.setSortingType(option);
   }
 
-  goToNgTemplate() {
+  goToStartPage() {
     this.galleryService.setSortingType(this.galleryService.DEFAULT_SORTING_STATE);
-    this.inputTitle = this.galleryService.DEFAULT_SEARCHING_VALUE;
+    this.filterTitle = '';
     this.photos.length = 0;
   }
 }

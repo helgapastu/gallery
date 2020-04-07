@@ -7,20 +7,20 @@ import { GalleryService } from './gallery.service';
 export class PhotoSearchPipe implements PipeTransform {
 constructor(private galleryService: GalleryService) {}
 
-  transform(photos: any, search = ''): any {
+  transform(photos: any, filter = ''): any {
     
-    if (!search.trim()) {
+    if (!filter.trim()) {
       this.galleryService.currentVisiblePhotos = photos;
       
       return photos;
 
     } else {
-      const searchedPhotos = photos.filter(photoObj => {
-        return photoObj.title.toLowerCase().includes(search.toLowerCase())
+      const filteredPhotos = photos.filter(photoObj => {
+        return photoObj.title.toLowerCase().includes(filter.toLowerCase())
       });
-      this.galleryService.currentVisiblePhotos = searchedPhotos;
+      this.galleryService.currentVisiblePhotos = filteredPhotos;
 
-      return searchedPhotos;
+      return filteredPhotos;
     }
   }
 

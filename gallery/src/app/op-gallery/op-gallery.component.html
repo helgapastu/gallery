@@ -1,13 +1,13 @@
 <ng-container *ngIf="photos.length > 0; else searchTemplate">
     <div>
-        <button (click)="goToNgTemplate()">Back</button>
+        <button (click)="goToStartPage()">Back</button>
 
-        <input type="text" [(ngModel)]="inputTitle" (change)="setInputTitle($event.target.value)" placeholder="Search photo...">
+        <input type="text" [(ngModel)]="filterTitle" (change)="setFilterTitle($event.target.value)" placeholder="Search photo...">
 
         <app-photo-sort (changedOption)="setSelectedOption($event)"></app-photo-sort>
     </div>
 
-    <app-op-photo *ngFor="let photoObj of photos | photoSearch:inputTitle | photoSort:selectedOption"
+    <app-op-photo *ngFor="let photoObj of photos | photoSearch:filterTitle | photoSort:selectedOption"
         [photoObj]="photoObj">
     </app-op-photo>
 </ng-container>
@@ -15,5 +15,5 @@
 
 <ng-template #searchTemplate>
     <input type="text" [(ngModel)]="searchText">
-    <button (click)="searchInNgTemplate(searchText)">Search</button>
+    <button (click)="searchInStartPage(searchText)">Search</button>
 </ng-template>
