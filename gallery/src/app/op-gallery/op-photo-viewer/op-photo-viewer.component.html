@@ -1,9 +1,9 @@
-
 <div class="photoView" *ngIf="photo">
+    <button (click)="back()">Back</button>
     <p>{{ photo.title }}</p>
     <img [src]="photo.url" />
-    <p><a routerLink="/">До галереї</a></p>
-    <button (click)="previous()">Назад</button>
-    <button (click)="next()">Вперед</button>
+    <div>
+        <button (click)="previous()">Previous</button>
+        <button (click)="next()">Next</button>
+    </div>
 </div>
-

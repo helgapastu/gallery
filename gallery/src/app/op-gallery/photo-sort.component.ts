@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from "@angular/core";
+import { Component, Output, EventEmitter } from "@angular/core";
 import { GalleryService } from './gallery.service';
 
 @Component({
@@ -10,9 +10,9 @@ import { GalleryService } from './gallery.service';
 
 export class PhotoSortComponent {
   options = [
-    { name: 'Не сортовано', value: 'default' },
-    { name: 'A-Я', value: 'az' },
-    { name: 'Я-A', value: 'za' }
+    { name: 'Not sorted', value: 'default' },
+    { name: 'A-Z', value: 'ASC' },
+    { name: 'Z-A', value: 'DESC' }
   ];
 
   selectedOption: string;
@@ -23,7 +23,7 @@ export class PhotoSortComponent {
   }
 
   ngOnInit() {
-    this.selectOption(this.galleryService.sortType);
+    this.selectOption(this.galleryService.getSortingType());
   }
 
   selectOption(value: string) {
