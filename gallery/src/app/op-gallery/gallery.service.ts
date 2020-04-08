@@ -12,9 +12,30 @@ export class GalleryService {
 
   private cachedResults: any[] = [];
 
-  getPhotos(searchText: string): Observable<any> {
-    console.log(searchText);
+  currentVisiblePhotos = [];
 
+  DEFAULT_SORTING_STATE = 'default';
+
+  private filteringValue: string = '';
+  private sortingType: string = this.DEFAULT_SORTING_STATE;
+
+  setFilteringValue(filteringValue) {
+    this.filteringValue = filteringValue;
+  }
+
+  getFilteringValue() {
+    return this.filteringValue;
+  }
+
+  setSortingType(sortingType) {
+    this.sortingType = sortingType;
+  }
+
+  getSortingType() {
+    return this.sortingType;
+  }
+
+  getPhotos(searchText: string): Observable<any> {
     const httpParams = {
       params: new HttpParams()
     };
@@ -59,27 +80,26 @@ export class GalleryService {
   }
 
   getById(id: string) {
-    return this.cachedResults.find(p => p.id === id)
+    return this.currentVisiblePhotos.find(p => p.id === id)
   }
 
   goToNextPhoto(id: string) {
-    const index = this.cachedResults.findIndex(photo => photo.id === id);
+    const index = this.currentVisiblePhotos.findIndex(photo => photo.id === id);
 
-    if (index < this.cachedResults.length - 1) {
-      return this.cachedResults[index + 1]
+    if (index < this.currentVisiblePhotos.length - 1) {
+      return this.currentVisiblePhotos[index + 1]
     } else {
-      return this.cachedResults[index]
+      return this.currentVisiblePhotos[index]
     }
   }
 
   goToPreviousPhoto(id: string) {
-    const index = this.cachedResults.findIndex(photo => photo.id === id);
+    const index = this.currentVisiblePhotos.findIndex(photo => photo.id === id);
 
     if (index !== 0) {
-      return this.cachedResults[index - 1]
+      return this.currentVisiblePhotos[index - 1]
     } else {
-      return this.cachedResults[index]
+      return this.currentVisiblePhotos[index]
     }
   }
-
 }

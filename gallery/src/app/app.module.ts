@@ -11,6 +11,7 @@ import { OpPhotoViewerComponent } from './op-gallery/op-photo-viewer/op-photo-vi
 import { PhotoStyleDirective } from './op-gallery/op-photo/photo-style.directive';
 import { PhotoSearchPipe } from './op-gallery/photo-search.pipe';
 import { PhotoSortPipe } from './op-gallery/photo-sort.pipe'
+import { PhotoSortComponent } from './op-gallery/photo-sort.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { PhotoSortPipe } from './op-gallery/photo-sort.pipe'
     OpGalleryComponent,
     OpPhotoComponent,
     OpPhotoViewerComponent,
+    PhotoSortComponent,
     PhotoStyleDirective,
     PhotoSearchPipe,
     PhotoSortPipe

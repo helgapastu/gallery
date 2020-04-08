@@ -10,20 +10,17 @@ import { Router } from '@angular/router';
 })
 export class OpGalleryComponent implements OnInit {
   photos: any[] = [];
-  options = [
-    { name: 'Не сортовано', value: 'default' },
-    { name: 'A-Я', value: 'az' },
-    { name: 'Я-A', value: 'za' }
-  ];
-  selectedOption = 'default';
+  selectedOption: string;
+  filterTitle: string;
 
   constructor(private galleryService: GalleryService, private router: Router) { }
 
   ngOnInit() {
+    this.filterTitle = this.galleryService.getFilteringValue();
     this.photos = this.galleryService.getCachedResults();
   }
 
-  search(searchText) {
+  searchInStartPage(searchText) {
     if (searchText.trim()) {
       this.galleryService.getPhotos(searchText).subscribe(response => {
         this.photos = response;
@@ -31,7 +28,19 @@ export class OpGalleryComponent implements OnInit {
     }
   }
 
-  selectOption(value: string) {
-    this.selectedOption = value
+  setFilterTitle(value) {
+    this.filterTitle = value;
+    this.galleryService.setFilteringValue(value);
+  }
+
+  setSelectedOption(option) {
+    this.selectedOption = option;
+    this.galleryService.setSortingType(option);
+  }
+
+  goToStartPage() {
+    this.galleryService.setSortingType(this.galleryService.DEFAULT_SORTING_STATE);
+    this.filterTitle = '';
+    this.photos.length = 0;
   }
 }

@@ -21,6 +21,10 @@ export class OpPhotoViewerComponent implements OnInit {
     })
   }
 
+  back() {
+    this.router.navigate(['/'])
+  }
+
   next() {
     const nextPhoto = this.galleryService.goToNextPhoto(this.photo.id)
     this.router.navigate(['photo/', nextPhoto.id])
