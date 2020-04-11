@@ -1,4 +1,6 @@
-<div class="photoBlock" (click)="displayPhoto()">
-    <p>{{ photoObj.title }}</p>
-    <img appPhotoStyle [src]="photoObj.url" />
-</div>
+<mat-card class="photo-block" appPhotoStyle (click)="displayPhoto()">
+
+    <mat-card-title>{{ photoObj.title }}</mat-card-title>
+    <img mat-card-image  [src]="photoObj.url">
+
+</mat-card>

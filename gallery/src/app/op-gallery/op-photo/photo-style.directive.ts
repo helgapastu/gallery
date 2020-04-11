@@ -9,7 +9,7 @@ export class PhotoStyleDirective {
 
   @HostListener('mouseenter') onEnter() {
     this.renderer.setStyle(this.el.nativeElement, 'border-style', 'solid')
-    this.renderer.setStyle(this.el.nativeElement, 'border-color', 'lightblue')
+    this.renderer.setStyle(this.el.nativeElement, 'border-color', 'lightgrey')
     this.renderer.setStyle(this.el.nativeElement, 'border-width', '3px')
     this.renderer.setStyle(this.el.nativeElement, 'cursor', 'pointer')
   }
