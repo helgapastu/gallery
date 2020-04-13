@@ -1,11 +1,14 @@
 import { Component, Output, EventEmitter } from "@angular/core";
 import { GalleryService } from './gallery.service';
 
+
 @Component({
   selector: 'app-photo-sort',
-  template: `<select (change)="selectOption($event.target.value)" [(ngModel)]="selectedOption">
-                <option *ngFor="let option of options" [value]="option.value">{{option.name}}</option>
-              </select>`
+  template: `<mat-form-field>
+              <mat-select (selectionChange)="selectOption($event)" [(ngModel)]="selectedOption">
+              <mat-option *ngFor="let option of options" [value]="option.value">{{ option.name }}</mat-option>
+            </mat-select>
+          </mat-form-field>`
 })
 
 export class PhotoSortComponent {
@@ -26,8 +29,8 @@ export class PhotoSortComponent {
     this.selectOption(this.galleryService.getSortingType());
   }
 
-  selectOption(value: string) {
-    this.selectedOption = value;
+  selectOption(event) {
+    this.selectedOption = event.value || event;
     this.changedOption.emit(this.selectedOption)
   }
 

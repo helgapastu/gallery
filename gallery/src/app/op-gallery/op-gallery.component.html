@@ -1,8 +1,11 @@
 <ng-container *ngIf="photos.length > 0; else searchTemplate">
     <div>
-        <button (click)="goToStartPage()">Back</button>
+        <button mat-raised-button (click)="goToStartPage()">Back</button>
 
-        <input type="text" [(ngModel)]="filterTitle" (change)="setFilterTitle($event.target.value)" placeholder="Search photo...">
+        <mat-form-field class="input">
+            <mat-label>Filtered photos...</mat-label>
+            <input matInput type="text" [(ngModel)]="filterTitle" (change)="setFilterTitle($event.target.value)">
+        </mat-form-field>
 
         <app-photo-sort (changedOption)="setSelectedOption($event)"></app-photo-sort>
     </div>
@@ -14,6 +17,9 @@
 
 
 <ng-template #searchTemplate>
-    <input type="text" [(ngModel)]="searchText">
-    <button (click)="searchInStartPage(searchText)">Search</button>
+    <mat-form-field class="input">
+        <mat-label>Search photos...</mat-label>
+        <input matInput type="text" [(ngModel)]="searchText">
+    </mat-form-field>
+    <button mat-raised-button (click)="searchInStartPage(searchText)">Search</button>
 </ng-template>
